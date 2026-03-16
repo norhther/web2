@@ -700,6 +700,97 @@
     .footer-tag span { color: var(--accent); }
 
     /* ═══════════════════════════════════════
+       STACK CARD (hero right)
+    ═══════════════════════════════════════ */
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5rem;
+      align-items: center;
+      width: 100%;
+    }
+
+    .stack-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      overflow: hidden;
+      position: relative;
+      opacity: 0;
+      transform: translateY(30px);
+      animation: fadeUp 0.9s ease 0.45s forwards;
+    }
+
+    .stack-card::before {
+      content: '';
+      position: absolute; top: 0; left: 0; right: 0; height: 2px;
+      background: linear-gradient(90deg, var(--accent), var(--secondary), transparent);
+    }
+
+    .stack-card-header {
+      padding: 1.4rem 1.6rem;
+      border-bottom: 1px solid var(--border);
+      display: flex; align-items: center; gap: 0.7rem;
+    }
+
+    .status-dot {
+      width: 8px; height: 8px; border-radius: 50%;
+      background: var(--accent);
+      box-shadow: 0 0 8px rgba(var(--accent-rgb), 0.7);
+      animation: pulse-dot 2s ease-in-out infinite;
+      flex-shrink: 0;
+    }
+
+    @keyframes pulse-dot {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.4; }
+    }
+
+    .stack-card-title {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.65rem;
+      color: var(--text-dim);
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+    }
+
+    .stack-card-company {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.65rem;
+      color: var(--accent);
+      letter-spacing: 0.1em;
+      margin-left: auto;
+    }
+
+    .stack-card-body { padding: 1.5rem 1.6rem; display: flex; flex-direction: column; gap: 1.2rem; }
+
+    .stack-group-label {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.58rem;
+      color: var(--text-faint);
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      margin-bottom: 0.5rem;
+    }
+
+    .stack-chips { display: flex; flex-wrap: wrap; gap: 0.35rem; }
+
+    .stack-chip {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.6rem;
+      padding: 0.28rem 0.65rem;
+      border-radius: 2px;
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      color: var(--text-dim);
+      letter-spacing: 0.04em;
+      transition: border-color 0.3s, color 0.3s;
+    }
+
+    .stack-chip:hover { border-color: var(--border-acc); color: var(--accent); }
+    .stack-chip.hot { background: var(--accent-dim); border-color: var(--border-acc); color: var(--accent); }
+
+    /* ═══════════════════════════════════════
        ANIMATIONS
     ═══════════════════════════════════════ */
     @keyframes fadeUp {
@@ -720,6 +811,8 @@
       nav { padding: 1.2rem 1.5rem; }
       .nav-center { gap: 1.5rem; }
       main { padding: 0 1.5rem; }
+      .hero-grid { grid-template-columns: 1fr; }
+      .stack-card { display: none; }
       .research-grid { grid-template-columns: 1fr; }
       .pub-card { grid-template-columns: 1fr; gap: 1.2rem; }
       .career-columns { grid-template-columns: 1fr; }
@@ -759,24 +852,77 @@
   <main>
     <!-- HERO -->
     <section id="home">
-      <div class="hero-inner">
-        <p class="hero-eyebrow">Senior Data Scientist</p>
-        <h1 class="hero-name">Hi, I'm<br><em>Omar López</em></h1>
-        <p class="hero-subtitle">// Machine Learning · Generative AI · Research</p>
-        <p class="hero-bio">
-          I specialize in machine learning, deep learning, and AI-powered solutions —
-          from privacy-preserving synthetic data generation on HPC clusters to production
-          RAG systems and voice AI agents serving 100k+ clients.
-        </p>
-        <blockquote class="hero-quote">
-          "If you torture the data long enough, it will confess to anything."
-          <cite>— Ronald H. Coase</cite>
-        </blockquote>
-        <div class="hero-actions">
-          <a href="https://linkedin.com/in/omar-lopez-rubio" target="_blank" class="btn btn-primary">↗ LinkedIn</a>
-          <a href="mailto:omarlopezrubio@gmail.com" class="btn btn-ghost">✉ Email</a>
-          <a href="docs/cv-omar-lopez.pdf" target="_blank" class="btn btn-ghost">↓ CV</a>
-          <a href="https://norhther.github.io/blog/" target="_blank" class="btn btn-ghost">✍ Blog</a>
+      <div class="hero-grid">
+        <div class="hero-inner">
+          <p class="hero-eyebrow">Senior Data Scientist</p>
+          <h1 class="hero-name">Hi, I'm<br><em>Omar López</em></h1>
+          <p class="hero-subtitle">// Machine Learning · Generative AI · Research</p>
+          <p class="hero-bio">
+            I specialize in machine learning, deep learning, and AI-powered solutions —
+            from privacy-preserving synthetic data generation on HPC clusters to production
+            RAG systems and LLM agents serving 100k+ clients.
+          </p>
+          <blockquote class="hero-quote">
+            "If you torture the data long enough, it will confess to anything."
+            <cite>— Ronald H. Coase</cite>
+          </blockquote>
+          <div class="hero-actions">
+            <a href="https://linkedin.com/in/omar-lopez-rubio" target="_blank" class="btn btn-primary">↗ LinkedIn</a>
+            <a href="mailto:omarlopezrubio@gmail.com" class="btn btn-ghost">✉ Email</a>
+            <a href="docs/cv-omar-lopez.pdf" target="_blank" class="btn btn-ghost">↓ CV</a>
+            <a href="https://norhther.github.io/blog/" target="_blank" class="btn btn-ghost">✍ Blog</a>
+          </div>
+        </div>
+
+        <div class="stack-card">
+          <div class="stack-card-header">
+            <div class="status-dot"></div>
+            <span class="stack-card-title">Currently at</span>
+            <span class="stack-card-company">Capgemini //</span>
+          </div>
+          <div class="stack-card-body">
+            <div>
+              <p class="stack-group-label">Generative AI</p>
+              <div class="stack-chips">
+                <span class="stack-chip hot">LLMs</span>
+                <span class="stack-chip hot">RAG</span>
+                <span class="stack-chip hot">AI Agents</span>
+                <span class="stack-chip hot">LangChain</span>
+                <span class="stack-chip hot">LangGraph</span>
+                <span class="stack-chip">A2A</span>
+              </div>
+            </div>
+            <div>
+              <p class="stack-group-label">ML / Research</p>
+              <div class="stack-chips">
+                <span class="stack-chip">Diffusion Models</span>
+                <span class="stack-chip">GANs</span>
+                <span class="stack-chip">SVMs</span>
+                <span class="stack-chip">Deep Learning</span>
+                <span class="stack-chip">MLOps</span>
+              </div>
+            </div>
+            <div>
+              <p class="stack-group-label">Infrastructure</p>
+              <div class="stack-chips">
+                <span class="stack-chip">FastAPI</span>
+                <span class="stack-chip">Docker</span>
+                <span class="stack-chip">HPC</span>
+                <span class="stack-chip">SQL</span>
+                <span class="stack-chip">GitLab</span>
+              </div>
+            </div>
+            <div>
+              <p class="stack-group-label">Languages</p>
+              <div class="stack-chips">
+                <span class="stack-chip hot">Python</span>
+                <span class="stack-chip">R</span>
+                <span class="stack-chip">C++</span>
+                <span class="stack-chip">Java</span>
+                <span class="stack-chip">LaTeX</span>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </section>
@@ -851,52 +997,40 @@
           <p class="career-section-label">// Work History</p>
           <div class="timeline">
             <div class="timeline-item featured reveal">
-              <p class="timeline-date">July 2025 – Present</p>
-              <h4>Capgemini Engineering, Barcelona</h4>
+              <p class="timeline-date">Jul 2025 – Present · Barcelona (Hybrid)</p>
+              <h4>Capgemini</h4>
               <p class="timeline-role">Senior Data Scientist</p>
-              <p>Specializing in Generative AI. Working on advanced RAG systems, Large Language Models, and scalable AI solutions for international clients.</p>
+              <p>Contributed to the design, development, and deployment of Generative AI solutions for multiple enterprise clients across different industries. Integrated LLM-based capabilities into existing data platforms, enabling organizations to modernize analytics, automate knowledge extraction, and enhance decision-making.</p>
             </div>
             <div class="timeline-item reveal">
-              <p class="timeline-date">March 2025 – July 2025</p>
-              <h4>Factor Energia, Barcelona</h4>
+              <p class="timeline-date">Mar 2025 – Jul 2025 · Barcelona (Hybrid)</p>
+              <h4>Factor Energia</h4>
               <p class="timeline-role">AI Software Engineer</p>
-              <p>Architected real-time AI agents for contract automation using TTS SOTA models, serving 100,000+ clients. Engineered a zero-knowledge Agent-to-Agent (A2A) protocol. Built pipelines processing 100,000+ documents monthly.</p>
+              <p>Architected and deployed a real-time AI agent automating contract sales for 100,000+ clients. Engineered an Agent-to-Agent (A2A) communication protocol with a dynamic agent-shop registry. Developed a live sales-assistant providing real-time recommendations to human partners, and built an automated pipeline ingesting 100,000+ pages of contracts and invoices monthly.</p>
             </div>
             <div class="timeline-item reveal">
-              <p class="timeline-date">June 2024 – September 2024</p>
-              <h4>Factor Energia, Barcelona</h4>
-              <p class="timeline-role">AI Software Engineer (Internship)</p>
-              <p>Designed and implemented A2A chatbots, live voice assistants with TTS, and live chatbots.</p>
-            </div>
-            <div class="timeline-item reveal">
-              <p class="timeline-date">October 2022 – October 2024</p>
+              <p class="timeline-date">Oct 2022 – Oct 2024 · Barcelona</p>
               <h4>Barcelona Supercomputing Center</h4>
-              <p class="timeline-role">Junior Researcher</p>
-              <p>Developed GANs and diffusion models for HPC environments. Contributed to the European SECURED project collaborating with Semmelweis University physicians on privacy-preserving medical imaging.</p>
+              <p class="timeline-role">AI Researcher</p>
+              <p>Focused on the generation and security mechanisms of diffusion models in an HPC environment. Implemented MLOps solutions to efficiently serve machine learning applications. Contributed to the European SECURED project on privacy-preserving medical imaging.</p>
             </div>
             <div class="timeline-item reveal">
-              <p class="timeline-date">July 2018 – Present</p>
-              <h4>Freelance, Barcelona</h4>
-              <p class="timeline-role">Programming Tutor</p>
-              <p>Delivered coursework in Algorithmics, ML, and programming paradigms to 50+ students.</p>
+              <p class="timeline-date">Oct 2018 – Nov 2025</p>
+              <h4>Independent</h4>
+              <p class="timeline-role">Tutor</p>
+              <p>Imparted university and master-level courses on programming, statistics, and machine learning. Managed over 100 students across subjects including Python, Java, R, ML, and data science.</p>
             </div>
             <div class="timeline-item reveal">
-              <p class="timeline-date">December 2019 – April 2020</p>
-              <h4>Federació Catalana d'Esgrima</h4>
-              <p class="timeline-role">Software Programmer</p>
-              <p>Created Skore, a Node.js application for fencing match scoring.</p>
-            </div>
-            <div class="timeline-item reveal">
-              <p class="timeline-date">April 2018 – October 2018</p>
-              <h4>Accenture, Barcelona</h4>
+              <p class="timeline-date">Apr 2018 – Dec 2018 · Barcelona</p>
+              <h4>Accenture</h4>
               <p class="timeline-role">Technology Consulting Analyst</p>
-              <p>Liaison between ML teams in Barcelona and Madrid, leading OCR projects.</p>
+              <p>Led an Optical Character Recognition team on a complex information extraction project, delivering the foundations for ML-based document classification tools.</p>
             </div>
             <div class="timeline-item reveal">
-              <p class="timeline-date">October 2017 – February 2018</p>
-              <h4>Facultat d'Informàtica de Barcelona</h4>
-              <p class="timeline-role">Programming Mentor</p>
-              <p>Introductory programming teaching at Universitat Politècnica de Catalunya.</p>
+              <p class="timeline-date">Sep 2017 – Feb 2018 · Barcelona</p>
+              <h4>Aula Lliure — FIB</h4>
+              <p class="timeline-role">Tutor</p>
+              <p>Delivered university-level teaching for new students in Programming I and II.</p>
             </div>
           </div>
         </div>
