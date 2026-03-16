@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="cyber">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -8,26 +8,104 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400&family=Space+Mono:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
   <style>
-    :root {
-      --bg: #07070f;
-      --bg2: #0d0d1a;
-      --bg3: #12121f;
-      --surface: #161626;
-      --surface2: #1e1e32;
-      --cyan: #00e5c4;
-      --cyan-dim: rgba(0, 229, 196, 0.12);
-      --cyan-mid: rgba(0, 229, 196, 0.4);
-      --amber: #f5a623;
-      --amber-dim: rgba(245, 166, 35, 0.12);
-      --text: #e8e8f0;
-      --text-dim: #8888aa;
-      --text-faint: #44445a;
-      --border: rgba(255,255,255,0.06);
-      --border-cyan: rgba(0, 229, 196, 0.25);
+    /* ═══════════════════════════════════════
+       THEMES
+    ═══════════════════════════════════════ */
+    :root,
+    [data-theme="cyber"] {
+      --bg:          #07070f;
+      --bg2:         #0d0d1a;
+      --surface:     #161626;
+      --surface2:    #1e1e32;
+      --text:        #e8e8f0;
+      --text-dim:    #8888aa;
+      --text-faint:  #44445a;
+      --border:      rgba(255,255,255,0.06);
+      --accent:      #00e5c4;
+      --accent-rgb:  0, 229, 196;
+      --accent-dim:  rgba(0, 229, 196, 0.12);
+      --accent-mid:  rgba(0, 229, 196, 0.4);
+      --border-acc:  rgba(0, 229, 196, 0.25);
+      --secondary:   #f5a623;
+      --sec-dim:     rgba(245, 166, 35, 0.12);
     }
 
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    [data-theme="ember"] {
+      --bg:          #0f0800;
+      --bg2:         #180e00;
+      --surface:     #211400;
+      --surface2:    #2c1a00;
+      --text:        #f0e8d8;
+      --text-dim:    #aa8855;
+      --text-faint:  #5a4422;
+      --border:      rgba(255,200,100,0.07);
+      --accent:      #ff6b35;
+      --accent-rgb:  255, 107, 53;
+      --accent-dim:  rgba(255, 107, 53, 0.12);
+      --accent-mid:  rgba(255, 107, 53, 0.4);
+      --border-acc:  rgba(255, 107, 53, 0.3);
+      --secondary:   #ffd166;
+      --sec-dim:     rgba(255, 209, 102, 0.12);
+    }
 
+    [data-theme="violet"] {
+      --bg:          #080710;
+      --bg2:         #0e0d1a;
+      --surface:     #151426;
+      --surface2:    #1d1b32;
+      --text:        #ece8f8;
+      --text-dim:    #8880bb;
+      --text-faint:  #44405a;
+      --border:      rgba(180,160,255,0.07);
+      --accent:      #b48eff;
+      --accent-rgb:  180, 142, 255;
+      --accent-dim:  rgba(180, 142, 255, 0.12);
+      --accent-mid:  rgba(180, 142, 255, 0.4);
+      --border-acc:  rgba(180, 142, 255, 0.28);
+      --secondary:   #ff8ef0;
+      --sec-dim:     rgba(255, 142, 240, 0.12);
+    }
+
+    [data-theme="arctic"] {
+      --bg:          #f5f7fa;
+      --bg2:         #edf0f5;
+      --surface:     #ffffff;
+      --surface2:    #f0f3f8;
+      --text:        #1a2035;
+      --text-dim:    #5566888;
+      --text-faint:  #aab0c0;
+      --border:      rgba(0,0,0,0.07);
+      --accent:      #0066ff;
+      --accent-rgb:  0, 102, 255;
+      --accent-dim:  rgba(0, 102, 255, 0.08);
+      --accent-mid:  rgba(0, 102, 255, 0.35);
+      --border-acc:  rgba(0, 102, 255, 0.2);
+      --secondary:   #ff3d6b;
+      --sec-dim:     rgba(255, 61, 107, 0.1);
+    }
+
+    [data-theme="matrix"] {
+      --bg:          #000d00;
+      --bg2:         #011400;
+      --surface:     #031a03;
+      --surface2:    #052205;
+      --text:        #c8f0c8;
+      --text-dim:    #5a9a5a;
+      --text-faint:  #224422;
+      --border:      rgba(0,255,0,0.06);
+      --accent:      #00ff41;
+      --accent-rgb:  0, 255, 65;
+      --accent-dim:  rgba(0, 255, 65, 0.1);
+      --accent-mid:  rgba(0, 255, 65, 0.35);
+      --border-acc:  rgba(0, 255, 65, 0.22);
+      --secondary:   #ffff00;
+      --sec-dim:     rgba(255, 255, 0, 0.1);
+    }
+
+    /* ═══════════════════════════════════════
+       BASE
+    ═══════════════════════════════════════ */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; }
 
     body {
@@ -37,45 +115,86 @@
       font-weight: 300;
       line-height: 1.7;
       overflow-x: hidden;
+      transition: background 0.4s, color 0.4s;
     }
 
-    /* ─── CANVAS BACKGROUND ─── */
     #bg-canvas {
-      position: fixed;
-      inset: 0;
-      z-index: 0;
-      pointer-events: none;
-      opacity: 0.4;
+      position: fixed; inset: 0; z-index: 0;
+      pointer-events: none; opacity: 0.4;
     }
 
-    /* ─── NAV ─── */
-    nav {
-      position: fixed;
-      top: 0; left: 0; right: 0;
-      z-index: 100;
-      padding: 1.2rem 3rem;
+    /* ═══════════════════════════════════════
+       THEME SWITCHER
+    ═══════════════════════════════════════ */
+    .theme-switcher {
       display: flex;
       align-items: center;
-      justify-content: space-between;
-      background: linear-gradient(to bottom, rgba(7,7,15,0.95), transparent);
-      backdrop-filter: blur(6px);
+      gap: 0.5rem;
+    }
+
+    .theme-dot {
+      width: 14px;
+      height: 14px;
+      border-radius: 50%;
+      border: 2px solid transparent;
+      cursor: pointer;
+      transition: transform 0.2s, border-color 0.2s;
+      position: relative;
+    }
+
+    .theme-dot:hover { transform: scale(1.25); }
+
+    .theme-dot.active {
+      border-color: var(--text);
+      transform: scale(1.15);
+    }
+
+    .theme-dot[data-t="cyber"]  { background: #00e5c4; }
+    .theme-dot[data-t="ember"]  { background: #ff6b35; }
+    .theme-dot[data-t="violet"] { background: #b48eff; }
+    .theme-dot[data-t="arctic"] { background: #0066ff; }
+    .theme-dot[data-t="matrix"] { background: #00ff41; }
+
+    .theme-label {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.6rem;
+      color: var(--text-faint);
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      margin-right: 0.3rem;
+    }
+
+    /* ═══════════════════════════════════════
+       NAV
+    ═══════════════════════════════════════ */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      padding: 1.2rem 3rem;
+      display: flex; align-items: center; justify-content: space-between;
+      background: linear-gradient(to bottom, rgba(0,0,0,0.6), transparent);
+      backdrop-filter: blur(8px);
+      transition: background 0.4s;
+    }
+
+    [data-theme="arctic"] nav {
+      background: linear-gradient(to bottom, rgba(245,247,250,0.92), transparent);
     }
 
     .nav-logo {
       font-family: 'Space Mono', monospace;
       font-size: 0.75rem;
-      color: var(--cyan);
+      color: var(--accent);
       letter-spacing: 0.2em;
       text-transform: uppercase;
     }
 
-    .nav-links {
+    .nav-center {
       display: flex;
       gap: 2.5rem;
       list-style: none;
     }
 
-    .nav-links a {
+    .nav-center a {
       font-family: 'Space Mono', monospace;
       font-size: 0.7rem;
       color: var(--text-dim);
@@ -86,48 +205,40 @@
       position: relative;
     }
 
-    .nav-links a::after {
+    .nav-center a::after {
       content: '';
-      position: absolute;
-      bottom: -3px; left: 0;
+      position: absolute; bottom: -3px; left: 0;
       width: 0; height: 1px;
-      background: var(--cyan);
+      background: var(--accent);
       transition: width 0.3s;
     }
 
-    .nav-links a:hover { color: var(--cyan); }
-    .nav-links a:hover::after { width: 100%; }
+    .nav-center a:hover { color: var(--accent); }
+    .nav-center a:hover::after { width: 100%; }
 
-    /* ─── MAIN LAYOUT ─── */
+    /* ═══════════════════════════════════════
+       LAYOUT
+    ═══════════════════════════════════════ */
     main {
-      position: relative;
-      z-index: 1;
-      max-width: 1200px;
+      position: relative; z-index: 1;
+      max-width: 1100px;
       margin: 0 auto;
       padding: 0 2rem;
     }
 
-    section {
-      padding: 6rem 0;
-    }
+    section { padding: 6rem 0; }
 
-    /* ─── HERO ─── */
+    /* ═══════════════════════════════════════
+       HERO
+    ═══════════════════════════════════════ */
     #home {
       min-height: 100vh;
-      display: flex;
-      align-items: center;
+      display: flex; align-items: center;
       padding-top: 5rem;
     }
 
     .hero-inner {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 4rem;
-      align-items: center;
-      width: 100%;
-    }
-
-    .hero-left {
+      max-width: 720px;
       opacity: 0;
       transform: translateY(30px);
       animation: fadeUp 0.9s ease 0.2s forwards;
@@ -136,21 +247,18 @@
     .hero-eyebrow {
       font-family: 'Space Mono', monospace;
       font-size: 0.7rem;
-      color: var(--cyan);
+      color: var(--accent);
       letter-spacing: 0.3em;
       text-transform: uppercase;
       margin-bottom: 1.5rem;
-      display: flex;
-      align-items: center;
-      gap: 0.8rem;
+      display: flex; align-items: center; gap: 0.8rem;
     }
 
     .hero-eyebrow::before {
       content: '';
       display: inline-block;
-      width: 2.5rem;
-      height: 1px;
-      background: var(--cyan);
+      width: 2.5rem; height: 1px;
+      background: var(--accent);
     }
 
     h1.hero-name {
@@ -164,13 +272,13 @@
 
     h1.hero-name em {
       font-style: italic;
-      color: var(--cyan);
+      color: var(--accent);
     }
 
     .hero-subtitle {
       font-family: 'Space Mono', monospace;
       font-size: 0.85rem;
-      color: var(--amber);
+      color: var(--secondary);
       letter-spacing: 0.05em;
       margin-bottom: 1.8rem;
     }
@@ -179,12 +287,11 @@
       color: var(--text-dim);
       font-size: 1rem;
       line-height: 1.8;
-      max-width: 520px;
       margin-bottom: 2rem;
     }
 
     .hero-quote {
-      border-left: 2px solid var(--cyan-mid);
+      border-left: 2px solid var(--accent-mid);
       padding-left: 1.2rem;
       margin-bottom: 2.5rem;
       font-family: 'Cormorant Garamond', serif;
@@ -204,15 +311,14 @@
     }
 
     .hero-actions {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.8rem;
+      display: flex; flex-wrap: wrap; gap: 0.8rem;
     }
 
+    /* ═══════════════════════════════════════
+       BUTTONS
+    ═══════════════════════════════════════ */
     .btn {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5rem;
+      display: inline-flex; align-items: center; gap: 0.5rem;
       padding: 0.65rem 1.4rem;
       font-family: 'Space Mono', monospace;
       font-size: 0.72rem;
@@ -225,180 +331,53 @@
     }
 
     .btn-primary {
-      background: var(--cyan);
+      background: var(--accent);
       color: var(--bg);
       font-weight: 700;
     }
 
     .btn-primary:hover {
-      background: #fff;
-      box-shadow: 0 0 30px rgba(0, 229, 196, 0.4);
+      filter: brightness(1.15);
+      box-shadow: 0 0 28px rgba(var(--accent-rgb), 0.4);
     }
 
     .btn-ghost {
-      border: 1px solid var(--border-cyan);
-      color: var(--cyan);
-      background: var(--cyan-dim);
+      border: 1px solid var(--border-acc);
+      color: var(--accent);
+      background: var(--accent-dim);
     }
 
     .btn-ghost:hover {
-      background: rgba(0,229,196,0.2);
-      border-color: var(--cyan);
+      background: rgba(var(--accent-rgb), 0.2);
+      border-color: var(--accent);
     }
 
-    /* ─── HERO RIGHT: stats card ─── */
-    .hero-right {
-      opacity: 0;
-      transform: translateY(30px);
-      animation: fadeUp 0.9s ease 0.45s forwards;
+    /* ═══════════════════════════════════════
+       SECTION HEADERS
+    ═══════════════════════════════════════ */
+    .divider {
+      width: 100%; height: 1px;
+      background: linear-gradient(90deg, var(--border-acc), transparent);
+      margin-bottom: 6rem;
     }
 
-    .profile-card {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: 8px;
-      overflow: hidden;
-      position: relative;
-    }
-
-    .profile-card::before {
-      content: '';
-      position: absolute;
-      top: 0; left: 0; right: 0;
-      height: 2px;
-      background: linear-gradient(90deg, var(--cyan), var(--amber), transparent);
-    }
-
-    .profile-card-header {
-      padding: 2rem 2rem 1.5rem;
-      display: flex;
-      align-items: center;
-      gap: 1.2rem;
-      border-bottom: 1px solid var(--border);
-    }
-
-    .profile-avatar {
-      width: 64px;
-      height: 64px;
-      border-radius: 50%;
-      border: 2px solid var(--border-cyan);
-      background: linear-gradient(135deg, var(--cyan-dim), var(--amber-dim));
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 1.8rem;
-      font-weight: 600;
-      color: var(--cyan);
-      flex-shrink: 0;
-    }
-
-    .profile-info-name {
-      font-family: 'Cormorant Garamond', serif;
-      font-weight: 600;
-      font-size: 1.3rem;
-    }
-
-    .profile-info-role {
-      font-family: 'Space Mono', monospace;
-      font-size: 0.65rem;
-      color: var(--amber);
-      letter-spacing: 0.1em;
-    }
-
-    .profile-card-body {
-      padding: 1.5rem 2rem;
-    }
-
-    .stats-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 1rem;
-      margin-bottom: 1.5rem;
-    }
-
-    .stat-item {
-      text-align: center;
-      padding: 1rem;
-      background: var(--bg2);
-      border-radius: 4px;
-      border: 1px solid var(--border);
-    }
-
-    .stat-num {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 2.2rem;
-      font-weight: 700;
-      color: var(--cyan);
-      line-height: 1;
-      display: block;
-    }
-
-    .stat-label {
-      font-family: 'Space Mono', monospace;
-      font-size: 0.6rem;
-      color: var(--text-faint);
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      margin-top: 0.3rem;
-      display: block;
-    }
-
-    .skills-label {
-      font-family: 'Space Mono', monospace;
-      font-size: 0.65rem;
-      color: var(--text-faint);
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      margin-bottom: 0.8rem;
-    }
-
-    .skill-tags {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.4rem;
-    }
-
-    .skill-tag {
-      font-family: 'Space Mono', monospace;
-      font-size: 0.62rem;
-      padding: 0.3rem 0.7rem;
-      border-radius: 2px;
-      background: var(--bg2);
-      border: 1px solid var(--border);
-      color: var(--text-dim);
-      letter-spacing: 0.05em;
-    }
-
-    .skill-tag.highlight {
-      background: var(--cyan-dim);
-      border-color: var(--border-cyan);
-      color: var(--cyan);
-    }
-
-    /* ─── SECTION HEADERS ─── */
-    .section-header {
-      margin-bottom: 3.5rem;
-    }
+    .section-header { margin-bottom: 3.5rem; }
 
     .section-label {
       font-family: 'Space Mono', monospace;
       font-size: 0.68rem;
-      color: var(--cyan);
+      color: var(--accent);
       letter-spacing: 0.3em;
       text-transform: uppercase;
       margin-bottom: 0.8rem;
-      display: flex;
-      align-items: center;
-      gap: 0.8rem;
+      display: flex; align-items: center; gap: 0.8rem;
     }
 
     .section-label::before {
       content: '';
       display: inline-block;
-      width: 2rem;
-      height: 1px;
-      background: var(--cyan);
+      width: 2rem; height: 1px;
+      background: var(--accent);
     }
 
     h2.section-title {
@@ -409,19 +388,11 @@
       letter-spacing: -0.01em;
     }
 
-    h2.section-title strong {
-      font-weight: 700;
-    }
+    h2.section-title strong { font-weight: 700; }
 
-    /* ─── DIVIDER ─── */
-    .divider {
-      width: 100%;
-      height: 1px;
-      background: linear-gradient(90deg, var(--border-cyan), transparent);
-      margin-bottom: 6rem;
-    }
-
-    /* ─── RESEARCH ─── */
+    /* ═══════════════════════════════════════
+       RESEARCH
+    ═══════════════════════════════════════ */
     .research-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
@@ -433,35 +404,25 @@
       border: 1px solid var(--border);
       border-radius: 6px;
       padding: 2rem;
-      position: relative;
-      overflow: hidden;
+      position: relative; overflow: hidden;
       transition: border-color 0.3s, transform 0.3s;
     }
 
     .research-card::after {
       content: '';
-      position: absolute;
-      top: 0; left: 0; right: 0;
-      height: 1px;
-      background: linear-gradient(90deg, var(--cyan), transparent);
-      transform: scaleX(0);
-      transform-origin: left;
+      position: absolute; top: 0; left: 0; right: 0; height: 1px;
+      background: linear-gradient(90deg, var(--accent), transparent);
+      transform: scaleX(0); transform-origin: left;
       transition: transform 0.4s;
     }
 
-    .research-card:hover {
-      border-color: var(--border-cyan);
-      transform: translateY(-3px);
-    }
-
-    .research-card:hover::after {
-      transform: scaleX(1);
-    }
+    .research-card:hover { border-color: var(--border-acc); transform: translateY(-3px); }
+    .research-card:hover::after { transform: scaleX(1); }
 
     .research-tag {
       font-family: 'Space Mono', monospace;
       font-size: 0.6rem;
-      color: var(--amber);
+      color: var(--secondary);
       letter-spacing: 0.2em;
       text-transform: uppercase;
       margin-bottom: 1rem;
@@ -469,100 +430,73 @@
 
     .research-card h3 {
       font-family: 'Cormorant Garamond', serif;
-      font-weight: 600;
-      font-size: 1.4rem;
-      line-height: 1.3;
+      font-weight: 600; font-size: 1.4rem; line-height: 1.3;
       margin-bottom: 1rem;
     }
 
     .research-card p {
       color: var(--text-dim);
-      font-size: 0.9rem;
-      line-height: 1.75;
+      font-size: 0.9rem; line-height: 1.75;
       margin-bottom: 1.5rem;
     }
 
-    .research-chips {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.4rem;
-      margin-bottom: 1.5rem;
-    }
+    .research-chips { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-bottom: 1.5rem; }
 
     .chip {
       font-family: 'Space Mono', monospace;
       font-size: 0.58rem;
       padding: 0.25rem 0.6rem;
       border-radius: 100px;
-      background: var(--cyan-dim);
-      border: 1px solid var(--border-cyan);
-      color: var(--cyan);
+      background: var(--accent-dim);
+      border: 1px solid var(--border-acc);
+      color: var(--accent);
       letter-spacing: 0.05em;
     }
 
     .research-link {
       font-family: 'Space Mono', monospace;
-      font-size: 0.68rem;
-      color: var(--cyan);
-      text-decoration: none;
-      letter-spacing: 0.1em;
-      display: inline-flex;
-      align-items: center;
-      gap: 0.4rem;
+      font-size: 0.68rem; color: var(--accent);
+      text-decoration: none; letter-spacing: 0.1em;
+      display: inline-flex; align-items: center; gap: 0.4rem;
       transition: gap 0.3s;
     }
 
     .research-link:hover { gap: 0.7rem; }
 
-    /* ─── PUBLICATIONS ─── */
-    .pub-list {
-      display: flex;
-      flex-direction: column;
-      gap: 1.2rem;
-    }
+    /* ═══════════════════════════════════════
+       PUBLICATIONS
+    ═══════════════════════════════════════ */
+    .pub-list { display: flex; flex-direction: column; gap: 1.2rem; }
 
     .pub-card {
       background: var(--surface);
       border: 1px solid var(--border);
       border-radius: 6px;
       padding: 2rem 2.5rem;
-      display: grid;
-      grid-template-columns: 1fr auto;
-      gap: 2rem;
-      align-items: center;
+      display: grid; grid-template-columns: 1fr auto;
+      gap: 2rem; align-items: center;
       transition: border-color 0.3s, background 0.3s;
     }
 
-    .pub-card:hover {
-      border-color: var(--border-cyan);
-      background: var(--surface2);
-    }
+    .pub-card:hover { border-color: var(--border-acc); background: var(--surface2); }
 
     .pub-venue {
       font-family: 'Space Mono', monospace;
-      font-size: 0.62rem;
-      color: var(--amber);
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
+      font-size: 0.62rem; color: var(--secondary);
+      letter-spacing: 0.15em; text-transform: uppercase;
       margin-bottom: 0.6rem;
     }
 
     .pub-card h3 {
       font-family: 'Cormorant Garamond', serif;
-      font-size: 1.3rem;
-      font-weight: 600;
-      margin-bottom: 0.8rem;
+      font-size: 1.3rem; font-weight: 600; margin-bottom: 0.8rem;
     }
 
-    .pub-card p {
-      color: var(--text-dim);
-      font-size: 0.88rem;
-      line-height: 1.7;
-    }
+    .pub-card p { color: var(--text-dim); font-size: 0.88rem; line-height: 1.7; }
 
-    .pub-card .btn { flex-shrink: 0; }
-
-    /* ─── CAREER ─── */
+    /* ═══════════════════════════════════════
+       CAREER
+    ═══════════════════════════════════════ */
     .career-columns {
       display: grid;
       grid-template-columns: 3fr 2fr;
@@ -571,355 +505,229 @@
 
     .career-section-label {
       font-family: 'Space Mono', monospace;
-      font-size: 0.65rem;
-      color: var(--text-faint);
-      letter-spacing: 0.25em;
-      text-transform: uppercase;
+      font-size: 0.65rem; color: var(--text-faint);
+      letter-spacing: 0.25em; text-transform: uppercase;
       margin-bottom: 1.5rem;
     }
 
-    .timeline {
-      position: relative;
-      padding-left: 1.5rem;
-    }
+    .timeline { position: relative; padding-left: 1.5rem; }
 
     .timeline::before {
       content: '';
-      position: absolute;
-      top: 0.5rem;
-      left: 0;
-      bottom: 0;
+      position: absolute; top: 0.5rem; left: 0; bottom: 0;
       width: 1px;
-      background: linear-gradient(to bottom, var(--cyan), var(--border-cyan), transparent);
+      background: linear-gradient(to bottom, var(--accent), var(--border-acc), transparent);
     }
 
-    .timeline-item {
-      position: relative;
-      padding-bottom: 2.2rem;
-    }
+    .timeline-item { position: relative; padding-bottom: 2.2rem; }
 
     .timeline-item::before {
       content: '';
-      position: absolute;
-      left: -1.5rem;
-      top: 0.45rem;
-      width: 7px;
-      height: 7px;
+      position: absolute; left: -1.5rem; top: 0.45rem;
+      width: 7px; height: 7px;
       border-radius: 50%;
       background: var(--bg);
-      border: 1.5px solid var(--cyan-mid);
+      border: 1.5px solid var(--accent-mid);
       transition: border-color 0.3s, background 0.3s;
     }
 
-    .timeline-item:hover::before {
-      background: var(--cyan);
-      border-color: var(--cyan);
-    }
+    .timeline-item:hover::before { background: var(--accent); border-color: var(--accent); }
 
     .timeline-item.featured::before {
-      background: var(--cyan);
-      border-color: var(--cyan);
-      width: 9px;
-      height: 9px;
-      left: -1.55rem;
-      box-shadow: 0 0 10px var(--cyan);
+      background: var(--accent); border-color: var(--accent);
+      width: 9px; height: 9px; left: -1.55rem;
+      box-shadow: 0 0 10px rgba(var(--accent-rgb), 0.6);
     }
 
     .timeline-date {
       font-family: 'Space Mono', monospace;
-      font-size: 0.6rem;
-      color: var(--text-faint);
-      letter-spacing: 0.1em;
-      margin-bottom: 0.3rem;
+      font-size: 0.6rem; color: var(--text-faint);
+      letter-spacing: 0.1em; margin-bottom: 0.3rem;
     }
 
     .timeline-item h4 {
       font-family: 'DM Sans', sans-serif;
-      font-weight: 500;
-      font-size: 0.95rem;
-      margin-bottom: 0.15rem;
+      font-weight: 500; font-size: 0.95rem; margin-bottom: 0.15rem;
     }
 
     .timeline-role {
       font-family: 'Space Mono', monospace;
-      font-size: 0.65rem;
-      color: var(--cyan);
-      letter-spacing: 0.05em;
-      margin-bottom: 0.6rem;
+      font-size: 0.65rem; color: var(--accent);
+      letter-spacing: 0.05em; margin-bottom: 0.6rem;
     }
 
-    .timeline-item p {
-      font-size: 0.85rem;
-      color: var(--text-dim);
-      line-height: 1.7;
-    }
+    .timeline-item p { font-size: 0.85rem; color: var(--text-dim); line-height: 1.7; }
 
-    /* ─── EDUCATION + CERTS ─── */
-    .edu-list {
-      display: flex;
-      flex-direction: column;
-      gap: 1rem;
-      margin-bottom: 2.5rem;
-    }
+    /* ═══════════════════════════════════════
+       EDUCATION + CERTS
+    ═══════════════════════════════════════ */
+    .edu-list { display: flex; flex-direction: column; gap: 1rem; margin-bottom: 2.5rem; }
 
     .edu-item {
       padding: 1.2rem 1.5rem;
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: 4px;
-      transition: border-color 0.3s;
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: 4px; transition: border-color 0.3s;
     }
 
-    .edu-item:hover { border-color: var(--border-cyan); }
+    .edu-item:hover { border-color: var(--border-acc); }
 
     .edu-degree {
       font-family: 'Cormorant Garamond', serif;
-      font-weight: 600;
-      font-size: 1.05rem;
-      margin-bottom: 0.2rem;
+      font-weight: 600; font-size: 1.05rem; margin-bottom: 0.2rem;
     }
 
-    .edu-school {
-      font-size: 0.82rem;
-      color: var(--text-dim);
-      margin-bottom: 0.2rem;
-    }
+    .edu-school { font-size: 0.82rem; color: var(--text-dim); margin-bottom: 0.2rem; }
 
     .edu-year {
       font-family: 'Space Mono', monospace;
-      font-size: 0.6rem;
-      color: var(--text-faint);
-      letter-spacing: 0.1em;
+      font-size: 0.6rem; color: var(--text-faint); letter-spacing: 0.1em;
     }
 
-    .cert-list {
-      display: flex;
-      flex-direction: column;
-      gap: 0.6rem;
-    }
+    .cert-list { display: flex; flex-direction: column; gap: 0.6rem; }
 
     .cert-item {
-      display: flex;
-      align-items: center;
-      gap: 0.8rem;
+      display: flex; align-items: center; gap: 0.8rem;
       padding: 0.8rem 1.2rem;
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: 4px;
-      font-size: 0.85rem;
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: 4px; font-size: 0.85rem;
       transition: border-color 0.3s;
     }
 
-    .cert-item:hover { border-color: var(--border-cyan); }
+    .cert-item:hover { border-color: var(--border-acc); }
 
     .cert-dot {
-      width: 6px;
-      height: 6px;
-      border-radius: 50%;
-      background: var(--cyan);
-      flex-shrink: 0;
+      width: 6px; height: 6px; border-radius: 50%;
+      background: var(--accent); flex-shrink: 0;
     }
 
     .cert-issuer {
       font-family: 'Space Mono', monospace;
-      font-size: 0.58rem;
-      color: var(--text-faint);
-      letter-spacing: 0.08em;
-      margin-left: auto;
-      white-space: nowrap;
+      font-size: 0.58rem; color: var(--text-faint);
+      letter-spacing: 0.08em; margin-left: auto; white-space: nowrap;
     }
 
-    /* ─── CONTACT ─── */
-    #contact {
-      padding-bottom: 8rem;
-    }
+    /* ═══════════════════════════════════════
+       CONTACT
+    ═══════════════════════════════════════ */
+    #contact { padding-bottom: 8rem; }
 
     .contact-inner {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: 8px;
-      padding: 4rem;
-      position: relative;
-      overflow: hidden;
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 4rem;
-      align-items: center;
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: 8px; padding: 4rem;
+      position: relative; overflow: hidden;
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 4rem; align-items: center;
     }
 
     .contact-inner::before {
       content: '';
-      position: absolute;
-      top: 0; left: 0; right: 0;
-      height: 2px;
-      background: linear-gradient(90deg, var(--cyan), var(--amber));
+      position: absolute; top: 0; left: 0; right: 0; height: 2px;
+      background: linear-gradient(90deg, var(--accent), var(--secondary));
     }
 
     .contact-glow {
-      position: absolute;
-      top: -100px; right: -100px;
-      width: 400px;
-      height: 400px;
-      border-radius: 50%;
-      background: radial-gradient(circle, rgba(0,229,196,0.06), transparent 70%);
+      position: absolute; top: -100px; right: -100px;
+      width: 400px; height: 400px; border-radius: 50%;
+      background: radial-gradient(circle, rgba(var(--accent-rgb), 0.06), transparent 70%);
       pointer-events: none;
     }
 
     .contact-left h2 {
       font-family: 'Cormorant Garamond', serif;
-      font-weight: 300;
-      font-size: 2.5rem;
-      margin-bottom: 1rem;
+      font-weight: 300; font-size: 2.5rem; margin-bottom: 1rem;
     }
 
     .contact-left p {
-      color: var(--text-dim);
-      font-size: 0.95rem;
-      line-height: 1.8;
-      margin-bottom: 2rem;
+      color: var(--text-dim); font-size: 0.95rem; line-height: 1.8; margin-bottom: 2rem;
     }
 
-    .contact-links {
-      display: flex;
-      flex-direction: column;
-      gap: 0.8rem;
-    }
+    .contact-links { display: flex; flex-direction: column; gap: 0.8rem; }
 
     .contact-link-item {
-      display: flex;
-      align-items: center;
-      gap: 1rem;
+      display: flex; align-items: center; gap: 1rem;
       padding: 1rem 1.5rem;
-      background: var(--bg2);
-      border: 1px solid var(--border);
-      border-radius: 4px;
-      text-decoration: none;
-      color: var(--text);
+      background: var(--bg2); border: 1px solid var(--border);
+      border-radius: 4px; text-decoration: none; color: var(--text);
       transition: all 0.3s;
     }
 
     .contact-link-item:hover {
-      border-color: var(--border-cyan);
-      background: var(--cyan-dim);
-      color: var(--cyan);
+      border-color: var(--border-acc);
+      background: var(--accent-dim);
+      color: var(--accent);
       transform: translateX(4px);
     }
 
-    .contact-link-item svg {
-      width: 18px;
-      height: 18px;
-      opacity: 0.7;
-      flex-shrink: 0;
-    }
-
-    .contact-link-text {
-      flex: 1;
-    }
+    .contact-link-item svg { width: 18px; height: 18px; opacity: 0.7; flex-shrink: 0; }
 
     .contact-link-label {
       font-family: 'Space Mono', monospace;
-      font-size: 0.6rem;
-      color: var(--text-faint);
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      margin-bottom: 0.15rem;
+      font-size: 0.6rem; color: var(--text-faint);
+      letter-spacing: 0.15em; text-transform: uppercase; margin-bottom: 0.15rem;
     }
 
-    .contact-link-value {
-      font-size: 0.9rem;
-    }
+    .contact-link-value { font-size: 0.9rem; }
 
     .contact-link-arrow {
       font-family: 'Space Mono', monospace;
-      color: var(--cyan);
-      opacity: 0;
+      color: var(--accent); opacity: 0; margin-left: auto;
       transition: opacity 0.3s;
     }
 
     .contact-link-item:hover .contact-link-arrow { opacity: 1; }
 
-    /* ─── FOOTER ─── */
+    /* ═══════════════════════════════════════
+       FOOTER
+    ═══════════════════════════════════════ */
     footer {
-      position: relative;
-      z-index: 1;
+      position: relative; z-index: 1;
       border-top: 1px solid var(--border);
       padding: 2rem 3rem;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
+      display: flex; align-items: center; justify-content: space-between;
     }
 
     footer p {
       font-family: 'Space Mono', monospace;
-      font-size: 0.65rem;
-      color: var(--text-faint);
-      letter-spacing: 0.1em;
+      font-size: 0.65rem; color: var(--text-faint); letter-spacing: 0.1em;
     }
 
     .footer-tag {
       font-family: 'Space Mono', monospace;
-      font-size: 0.6rem;
-      color: var(--text-faint);
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
+      font-size: 0.6rem; color: var(--text-faint);
+      display: flex; align-items: center; gap: 0.5rem;
     }
 
-    .footer-tag span { color: var(--cyan); }
+    .footer-tag span { color: var(--accent); }
 
-    /* ─── ANIMATIONS ─── */
+    /* ═══════════════════════════════════════
+       ANIMATIONS
+    ═══════════════════════════════════════ */
     @keyframes fadeUp {
       to { opacity: 1; transform: translateY(0); }
     }
 
-    @keyframes pulse {
-      0%, 100% { opacity: 1; }
-      50% { opacity: 0.4; }
-    }
-
-    .cursor-blink {
-      display: inline-block;
-      width: 2px;
-      height: 1em;
-      background: var(--cyan);
-      vertical-align: middle;
-      animation: pulse 1s step-end infinite;
-      margin-left: 2px;
-    }
-
-    /* scroll reveal */
     .reveal {
-      opacity: 0;
-      transform: translateY(24px);
+      opacity: 0; transform: translateY(24px);
       transition: opacity 0.7s ease, transform 0.7s ease;
     }
 
-    .reveal.visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
 
-    /* ─── RESPONSIVE ─── */
+    /* ═══════════════════════════════════════
+       RESPONSIVE
+    ═══════════════════════════════════════ */
     @media (max-width: 900px) {
       nav { padding: 1.2rem 1.5rem; }
-      .nav-links { gap: 1.5rem; }
-
+      .nav-center { gap: 1.5rem; }
       main { padding: 0 1.5rem; }
-
-      .hero-inner { grid-template-columns: 1fr; gap: 3rem; }
-      .hero-right { display: none; }
-
       .research-grid { grid-template-columns: 1fr; }
-
       .pub-card { grid-template-columns: 1fr; gap: 1.2rem; }
-
       .career-columns { grid-template-columns: 1fr; }
-
       .contact-inner { grid-template-columns: 1fr; padding: 2.5rem; gap: 2.5rem; }
     }
 
-    @media (max-width: 600px) {
-      .nav-links { display: none; }
+    @media (max-width: 640px) {
+      .nav-center { display: none; }
       footer { flex-direction: column; gap: 0.8rem; text-align: center; }
     }
   </style>
@@ -931,93 +739,44 @@
   <!-- NAV -->
   <nav>
     <span class="nav-logo">OL // Data Science</span>
-    <ul class="nav-links">
+    <ul class="nav-center">
       <li><a href="#home">Home</a></li>
       <li><a href="#research">Research</a></li>
       <li><a href="#publications">Publications</a></li>
       <li><a href="#career">Career</a></li>
       <li><a href="#contact">Contact</a></li>
     </ul>
+    <div class="theme-switcher">
+      <span class="theme-label">Theme</span>
+      <button class="theme-dot active" data-t="cyber"  title="Cyber (teal)"></button>
+      <button class="theme-dot"        data-t="ember"  title="Ember (orange)"></button>
+      <button class="theme-dot"        data-t="violet" title="Violet (purple)"></button>
+      <button class="theme-dot"        data-t="arctic" title="Arctic (light blue)"></button>
+      <button class="theme-dot"        data-t="matrix" title="Matrix (green)"></button>
+    </div>
   </nav>
 
   <main>
     <!-- HERO -->
     <section id="home">
       <div class="hero-inner">
-        <div class="hero-left">
-          <p class="hero-eyebrow">Senior Data Scientist</p>
-          <h1 class="hero-name">
-            Hi, I'm<br><em>Omar López</em>
-          </h1>
-          <p class="hero-subtitle">// Machine Learning · Generative AI · Research</p>
-          <p class="hero-bio">
-            I specialize in machine learning, deep learning, and AI-powered solutions —
-            from privacy-preserving synthetic data generation on HPC clusters to production
-            RAG systems and voice AI agents serving 100k+ clients.
-          </p>
-          <blockquote class="hero-quote">
-            "If you torture the data long enough, it will confess to anything."
-            <cite>— Ronald H. Coase</cite>
-          </blockquote>
-          <div class="hero-actions">
-            <a href="https://linkedin.com/in/omar-lopez-rubio" target="_blank" class="btn btn-primary">
-              ↗ LinkedIn
-            </a>
-            <a href="mailto:omarlopezrubio@gmail.com" class="btn btn-ghost">
-              ✉ Email
-            </a>
-            <a href="docs/cv-omar-lopez.pdf" target="_blank" class="btn btn-ghost">
-              ↓ CV
-            </a>
-            <a href="https://norhther.github.io/blog/" target="_blank" class="btn btn-ghost">
-              ✍ Blog
-            </a>
-          </div>
-        </div>
-
-        <div class="hero-right">
-          <div class="profile-card">
-            <div class="profile-card-header">
-              <div class="profile-avatar">OL</div>
-              <div>
-                <div class="profile-info-name">Omar López Rubio</div>
-                <div class="profile-info-role">// SENIOR DATA SCIENTIST @ CAPGEMINI</div>
-              </div>
-            </div>
-            <div class="profile-card-body">
-              <div class="stats-grid">
-                <div class="stat-item">
-                  <span class="stat-num" data-target="8">0</span>
-                  <span class="stat-label">Years Exp.</span>
-                </div>
-                <div class="stat-item">
-                  <span class="stat-num" data-target="50">0</span>
-                  <span class="stat-label">Students Taught</span>
-                </div>
-                <div class="stat-item">
-                  <span class="stat-num" data-target="100">0</span>
-                  <span class="stat-label">k+ Clients Served</span>
-                </div>
-                <div class="stat-item">
-                  <span class="stat-num" data-target="6">0</span>
-                  <span class="stat-label">Certifications</span>
-                </div>
-              </div>
-              <p class="skills-label">Core Stack</p>
-              <div class="skill-tags">
-                <span class="skill-tag highlight">LLMs</span>
-                <span class="skill-tag highlight">RAG</span>
-                <span class="skill-tag highlight">Diffusion</span>
-                <span class="skill-tag highlight">GANs</span>
-                <span class="skill-tag">PyTorch</span>
-                <span class="skill-tag">HPC</span>
-                <span class="skill-tag">TTS</span>
-                <span class="skill-tag">SVMs</span>
-                <span class="skill-tag">Python</span>
-                <span class="skill-tag">A2A</span>
-              </div>
-            </div>
-          </div>
+        <p class="hero-eyebrow">Senior Data Scientist</p>
+        <h1 class="hero-name">Hi, I'm<br><em>Omar López</em></h1>
+        <p class="hero-subtitle">// Machine Learning · Generative AI · Research</p>
+        <p class="hero-bio">
+          I specialize in machine learning, deep learning, and AI-powered solutions —
+          from privacy-preserving synthetic data generation on HPC clusters to production
+          RAG systems and voice AI agents serving 100k+ clients.
+        </p>
+        <blockquote class="hero-quote">
+          "If you torture the data long enough, it will confess to anything."
+          <cite>— Ronald H. Coase</cite>
+        </blockquote>
+        <div class="hero-actions">
+          <a href="https://linkedin.com/in/omar-lopez-rubio" target="_blank" class="btn btn-primary">↗ LinkedIn</a>
+          <a href="mailto:omarlopezrubio@gmail.com" class="btn btn-ghost">✉ Email</a>
+          <a href="docs/cv-omar-lopez.pdf" target="_blank" class="btn btn-ghost">↓ CV</a>
+          <a href="https://norhther.github.io/blog/" target="_blank" class="btn btn-ghost">✍ Blog</a>
         </div>
       </div>
     </section>
@@ -1030,33 +789,29 @@
         <p class="section-label">Research</p>
         <h2 class="section-title">Areas of <strong>Deep Work</strong></h2>
       </div>
-
       <div class="research-grid">
         <div class="research-card reveal">
           <p class="research-tag">// Medical Imaging · Privacy</p>
           <h3>Secured Synthetic Mammogram Generation</h3>
-          <p>Contributed to the European SECURED Project by advancing privacy-preserving synthetic data generation for medical imaging. Designed and implemented scalable GANs and Diffusion Models on HPC environments (Marenostrum 5), incorporating differential privacy to comply with EU regulations. Delivered validated mammogram datasets for clinical research and supported cancer detection advancements.</p>
+          <p>Contributed to the European SECURED Project advancing privacy-preserving synthetic data generation for medical imaging. Designed and implemented scalable GANs and Diffusion Models on HPC environments (Marenostrum 5), incorporating differential privacy to comply with EU regulations.</p>
           <div class="research-chips">
             <span class="chip">GANs</span>
             <span class="chip">Diffusion Models</span>
             <span class="chip">Differential Privacy</span>
             <span class="chip">HPC</span>
             <span class="chip">Marenostrum 5</span>
-            <span class="chip">Medical Imaging</span>
           </div>
           <a href="https://upcommons.upc.edu/handle/2117/420302" target="_blank" class="research-link">Read Paper →</a>
         </div>
-
         <div class="research-card reveal">
           <p class="research-tag">// Bioinformatics · Genomics</p>
           <h3>SVM Kernel Development for Omic Data</h3>
-          <p>Designed and implemented novel Jaccard-Tanimoto-based kernels for Support Vector Machines, tailored to high-dimensional and sparse omic datasets. Proved generalization to real-valued feature spaces, enabling robust handling of both binary and continuous data. Demonstrated superior classification accuracy vs. RBF kernels in cancer subtype classification and gene expression analysis.</p>
+          <p>Designed novel Jaccard-Tanimoto-based kernels for SVMs tailored to high-dimensional sparse omic datasets. Proved generalization to real-valued feature spaces, demonstrating superior accuracy vs. RBF kernels in cancer subtype classification and gene expression analysis.</p>
           <div class="research-chips">
             <span class="chip">SVM</span>
             <span class="chip">Kernel Methods</span>
             <span class="chip">Genomics</span>
             <span class="chip">Cancer Classification</span>
-            <span class="chip">Bioinformatics</span>
           </div>
           <a href="https://upcommons.upc.edu/handle/2117/361192" target="_blank" class="research-link">Read Paper →</a>
         </div>
@@ -1071,13 +826,12 @@
         <p class="section-label">Publications</p>
         <h2 class="section-title">Peer-Reviewed <strong>Work</strong></h2>
       </div>
-
       <div class="pub-list">
         <div class="pub-card reveal">
           <div>
             <p class="pub-venue">IEEE Access · January 2025</p>
             <h3>SynthVal: A Framework for Validating Synthetic Medical Images</h3>
-            <p>A Python framework for validating synthetic medical image quality through statistical comparisons in deep feature space. SynthVal uses transformer-based models to extract semantic embeddings and computes similarity metrics — Fréchet Distance, Wasserstein Distance, and KL Divergence — between real and synthetic distributions. Evaluated on the CSAW-CC mammography dataset with synthetic images from the Barcelona Supercomputing Center.</p>
+            <p>A Python framework for validating synthetic medical image quality through statistical comparisons in deep feature space. Uses transformer-based models to extract semantic embeddings and computes Fréchet Distance, Wasserstein Distance, and KL Divergence between real and synthetic distributions. Evaluated on the CSAW-CC mammography dataset with images from the Barcelona Supercomputing Center.</p>
           </div>
           <a href="https://www.researchgate.net/publication/397698919_SynthVal_A_Framework_for_Validating_Synthetic_Medical_Images" target="_blank" class="btn btn-ghost">↗ View</a>
         </div>
@@ -1092,9 +846,7 @@
         <p class="section-label">Career</p>
         <h2 class="section-title">Experience &amp; <strong>Education</strong></h2>
       </div>
-
       <div class="career-columns">
-        <!-- WORK HISTORY -->
         <div>
           <p class="career-section-label">// Work History</p>
           <div class="timeline">
@@ -1104,59 +856,51 @@
               <p class="timeline-role">Senior Data Scientist</p>
               <p>Specializing in Generative AI. Working on advanced RAG systems, Large Language Models, and scalable AI solutions for international clients.</p>
             </div>
-
             <div class="timeline-item reveal">
               <p class="timeline-date">March 2025 – July 2025</p>
               <h4>Factor Energia, Barcelona</h4>
               <p class="timeline-role">AI Software Engineer</p>
-              <p>Architected real-time AI agents for contract automation and sales support using TTS SOTA models, serving over 100,000 clients. Engineered a zero-knowledge Agent-to-Agent (A2A) protocol and a live sales-assistant to boost efficiency. Developed automated pipelines processing 100,000+ documents monthly.</p>
+              <p>Architected real-time AI agents for contract automation using TTS SOTA models, serving 100,000+ clients. Engineered a zero-knowledge Agent-to-Agent (A2A) protocol. Built pipelines processing 100,000+ documents monthly.</p>
             </div>
-
             <div class="timeline-item reveal">
               <p class="timeline-date">June 2024 – September 2024</p>
               <h4>Factor Energia, Barcelona</h4>
               <p class="timeline-role">AI Software Engineer (Internship)</p>
               <p>Designed and implemented A2A chatbots, live voice assistants with TTS, and live chatbots.</p>
             </div>
-
             <div class="timeline-item reveal">
               <p class="timeline-date">October 2022 – October 2024</p>
               <h4>Barcelona Supercomputing Center</h4>
               <p class="timeline-role">Junior Researcher</p>
-              <p>Developed and optimized neural networks, GANs, and diffusion models for HPC environments. Contributed to the European SECURED project collaborating with Semmelweis University physicians.</p>
+              <p>Developed GANs and diffusion models for HPC environments. Contributed to the European SECURED project collaborating with Semmelweis University physicians on privacy-preserving medical imaging.</p>
             </div>
-
             <div class="timeline-item reveal">
               <p class="timeline-date">July 2018 – Present</p>
               <h4>Freelance, Barcelona</h4>
               <p class="timeline-role">Programming Tutor</p>
-              <p>Developed and delivered coursework in Algorithmics, ML, and various programming paradigms, managing over 50 students.</p>
+              <p>Delivered coursework in Algorithmics, ML, and programming paradigms to 50+ students.</p>
             </div>
-
             <div class="timeline-item reveal">
               <p class="timeline-date">December 2019 – April 2020</p>
               <h4>Federació Catalana d'Esgrima</h4>
               <p class="timeline-role">Software Programmer</p>
               <p>Created Skore, a Node.js application for fencing match scoring.</p>
             </div>
-
             <div class="timeline-item reveal">
               <p class="timeline-date">April 2018 – October 2018</p>
               <h4>Accenture, Barcelona</h4>
               <p class="timeline-role">Technology Consulting Analyst</p>
-              <p>Liaison between ML teams in Barcelona and Madrid, leading OCR projects and developing ML documentation.</p>
+              <p>Liaison between ML teams in Barcelona and Madrid, leading OCR projects.</p>
             </div>
-
             <div class="timeline-item reveal">
               <p class="timeline-date">October 2017 – February 2018</p>
               <h4>Facultat d'Informàtica de Barcelona</h4>
               <p class="timeline-role">Programming Mentor</p>
-              <p>Provided introductory programming teaching at Universitat Politècnica de Catalunya.</p>
+              <p>Introductory programming teaching at Universitat Politècnica de Catalunya.</p>
             </div>
           </div>
         </div>
 
-        <!-- EDUCATION + CERTS -->
         <div>
           <p class="career-section-label">// Education</p>
           <div class="edu-list">
@@ -1219,41 +963,27 @@
           <div class="section-label" style="margin-bottom:1rem">Contact</div>
           <h2>Let's <em style="font-family:'Cormorant Garamond',serif;font-style:italic">connect.</em></h2>
           <p>Whether it's a research collaboration, data science challenge, or just want to talk AI — my inbox is open.</p>
-          <a href="https://www.tusclasesparticulares.com/profesores/omar-lopez-rubio/opiniones" target="_blank" class="btn btn-ghost" style="display:inline-flex">
-            ★ Student Reviews
-          </a>
+          <a href="https://www.tusclasesparticulares.com/profesores/omar-lopez-rubio/opiniones" target="_blank" class="btn btn-ghost">★ Student Reviews</a>
         </div>
         <div class="contact-links">
           <a href="https://linkedin.com/in/omar-lopez-rubio" target="_blank" class="contact-link-item">
             <svg viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg>
-            <div class="contact-link-text">
-              <p class="contact-link-label">LinkedIn</p>
-              <p class="contact-link-value">omar-lopez-rubio</p>
-            </div>
+            <div><p class="contact-link-label">LinkedIn</p><p class="contact-link-value">omar-lopez-rubio</p></div>
             <span class="contact-link-arrow">→</span>
           </a>
           <a href="mailto:omarlopezrubio@gmail.com" class="contact-link-item">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
-            <div class="contact-link-text">
-              <p class="contact-link-label">Email</p>
-              <p class="contact-link-value">omarlopezrubio@gmail.com</p>
-            </div>
+            <div><p class="contact-link-label">Email</p><p class="contact-link-value">omarlopezrubio@gmail.com</p></div>
             <span class="contact-link-arrow">→</span>
           </a>
           <a href="docs/cv-omar-lopez.pdf" target="_blank" class="contact-link-item">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14,2 14,8 20,8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10,9 9,9 8,9"/></svg>
-            <div class="contact-link-text">
-              <p class="contact-link-label">Resume</p>
-              <p class="contact-link-value">Download CV (PDF)</p>
-            </div>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14,2 14,8 20,8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+            <div><p class="contact-link-label">Resume</p><p class="contact-link-value">Download CV (PDF)</p></div>
             <span class="contact-link-arrow">↓</span>
           </a>
           <a href="https://norhther.github.io/blog/" target="_blank" class="contact-link-item">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 013 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>
-            <div class="contact-link-text">
-              <p class="contact-link-label">Blog</p>
-              <p class="contact-link-value">norhther.github.io/blog</p>
-            </div>
+            <div><p class="contact-link-label">Blog</p><p class="contact-link-value">norhther.github.io/blog</p></div>
             <span class="contact-link-arrow">→</span>
           </a>
         </div>
@@ -1267,105 +997,97 @@
   </footer>
 
   <script>
-    /* ── CANVAS PARTICLE NETWORK ── */
-    (function() {
-      const canvas = document.getElementById('bg-canvas');
-      const ctx = canvas.getContext('2d');
-      let W, H, particles, animId;
-      const CYAN = '0, 229, 196';
-      const AMBER = '245, 166, 35';
-      const N = 60;
-      const MAX_DIST = 160;
+    /* ── THEME SWITCHER ── */
+    const dots = document.querySelectorAll('.theme-dot');
+    const html = document.documentElement;
 
-      function resize() {
-        W = canvas.width = window.innerWidth;
-        H = canvas.height = window.innerHeight;
-      }
+    const PARTICLE_COLORS = {
+      cyber:  ['0, 229, 196',  '245, 166, 35'],
+      ember:  ['255, 107, 53', '255, 209, 102'],
+      violet: ['180, 142, 255','255, 142, 240'],
+      arctic: ['0, 102, 255',  '255, 61, 107'],
+      matrix: ['0, 255, 65',   '255, 255, 0'],
+    };
 
-      function mkParticle() {
-        return {
-          x: Math.random() * W,
-          y: Math.random() * H,
-          vx: (Math.random() - 0.5) * 0.35,
-          vy: (Math.random() - 0.5) * 0.35,
-          r: Math.random() * 1.5 + 0.5,
-          c: Math.random() > 0.8 ? AMBER : CYAN
-        };
-      }
+    let currentTheme = localStorage.getItem('ol-theme') || 'cyber';
 
-      function init() {
-        resize();
-        particles = Array.from({length: N}, mkParticle);
-      }
-
-      function draw() {
-        ctx.clearRect(0, 0, W, H);
-        for (let i = 0; i < N; i++) {
-          const p = particles[i];
-          p.x += p.vx; p.y += p.vy;
-          if (p.x < 0 || p.x > W) p.vx *= -1;
-          if (p.y < 0 || p.y > H) p.vy *= -1;
-
-          ctx.beginPath();
-          ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
-          ctx.fillStyle = `rgba(${p.c}, 0.7)`;
-          ctx.fill();
-
-          for (let j = i + 1; j < N; j++) {
-            const q = particles[j];
-            const dx = p.x - q.x, dy = p.y - q.y;
-            const d = Math.sqrt(dx*dx + dy*dy);
-            if (d < MAX_DIST) {
-              const alpha = (1 - d / MAX_DIST) * 0.15;
-              ctx.beginPath();
-              ctx.moveTo(p.x, p.y);
-              ctx.lineTo(q.x, q.y);
-              ctx.strokeStyle = `rgba(${CYAN}, ${alpha})`;
-              ctx.lineWidth = 0.6;
-              ctx.stroke();
-            }
-          }
-        }
-        animId = requestAnimationFrame(draw);
-      }
-
-      window.addEventListener('resize', () => { resize(); });
-      init();
-      draw();
-    })();
-
-    /* ── STAT COUNTER ── */
-    function animateCount(el, target, suffix) {
-      let start = 0;
-      const dur = 1500;
-      const step = 16;
-      const inc = target / (dur / step);
-      const timer = setInterval(() => {
-        start = Math.min(start + inc, target);
-        el.textContent = Math.floor(start) + (suffix || '');
-        if (start >= target) clearInterval(timer);
-      }, step);
+    function applyTheme(t) {
+      html.setAttribute('data-theme', t);
+      dots.forEach(d => d.classList.toggle('active', d.dataset.t === t));
+      currentTheme = t;
+      localStorage.setItem('ol-theme', t);
+      // restart canvas with new colors
+      initCanvas();
     }
 
-    const statsObserver = new IntersectionObserver((entries) => {
-      entries.forEach(e => {
-        if (e.isIntersecting) {
-          document.querySelectorAll('[data-target]').forEach(el => {
-            animateCount(el, parseInt(el.dataset.target));
-          });
-          statsObserver.disconnect();
-        }
-      });
-    }, { threshold: 0.3 });
+    dots.forEach(dot => dot.addEventListener('click', () => applyTheme(dot.dataset.t)));
+    applyTheme(currentTheme);
 
-    const statsEl = document.querySelector('.stats-grid');
-    if (statsEl) statsObserver.observe(statsEl);
+    /* ── PARTICLE CANVAS ── */
+    const canvas = document.getElementById('bg-canvas');
+    const ctx = canvas.getContext('2d');
+    let W, H, particles, animId;
+    const N = 55;
+    const MAX_DIST = 155;
+
+    function resize() {
+      W = canvas.width = window.innerWidth;
+      H = canvas.height = window.innerHeight;
+    }
+
+    function mkParticle(colors) {
+      return {
+        x: Math.random() * W, y: Math.random() * H,
+        vx: (Math.random() - 0.5) * 0.35,
+        vy: (Math.random() - 0.5) * 0.35,
+        r: Math.random() * 1.4 + 0.4,
+        c: Math.random() > 0.8 ? colors[1] : colors[0]
+      };
+    }
+
+    function initCanvas() {
+      if (animId) cancelAnimationFrame(animId);
+      resize();
+      const colors = PARTICLE_COLORS[currentTheme];
+      particles = Array.from({length: N}, () => mkParticle(colors));
+      draw();
+    }
+
+    function draw() {
+      ctx.clearRect(0, 0, W, H);
+      const colors = PARTICLE_COLORS[currentTheme];
+      for (let i = 0; i < N; i++) {
+        const p = particles[i];
+        p.x += p.vx; p.y += p.vy;
+        if (p.x < 0 || p.x > W) p.vx *= -1;
+        if (p.y < 0 || p.y > H) p.vy *= -1;
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+        ctx.fillStyle = `rgba(${p.c}, 0.75)`;
+        ctx.fill();
+        for (let j = i + 1; j < N; j++) {
+          const q = particles[j];
+          const dx = p.x - q.x, dy = p.y - q.y;
+          const d = Math.sqrt(dx*dx + dy*dy);
+          if (d < MAX_DIST) {
+            ctx.beginPath();
+            ctx.moveTo(p.x, p.y); ctx.lineTo(q.x, q.y);
+            ctx.strokeStyle = `rgba(${colors[0]}, ${(1 - d / MAX_DIST) * 0.14})`;
+            ctx.lineWidth = 0.6;
+            ctx.stroke();
+          }
+        }
+      }
+      animId = requestAnimationFrame(draw);
+    }
+
+    window.addEventListener('resize', resize);
+    initCanvas();
 
     /* ── SCROLL REVEAL ── */
     const revealObs = new IntersectionObserver((entries) => {
-      entries.forEach((e, i) => {
+      entries.forEach(e => {
         if (e.isIntersecting) {
-          // stagger sibling reveals
           const siblings = Array.from(e.target.parentElement.querySelectorAll('.reveal'));
           const idx = siblings.indexOf(e.target);
           setTimeout(() => e.target.classList.add('visible'), idx * 80);
