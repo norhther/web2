@@ -1011,22 +1011,21 @@
 
     let currentTheme = localStorage.getItem('ol-theme') || 'cyber';
 
+    /* ── PARTICLE CANVAS ── */
+    const canvas = document.getElementById('bg-canvas');
+    const ctx = canvas.getContext('2d');
+    let W, H, particles, animId;
+
     function applyTheme(t) {
       html.setAttribute('data-theme', t);
       dots.forEach(d => d.classList.toggle('active', d.dataset.t === t));
       currentTheme = t;
       localStorage.setItem('ol-theme', t);
-      // restart canvas with new colors
       initCanvas();
     }
 
     dots.forEach(dot => dot.addEventListener('click', () => applyTheme(dot.dataset.t)));
     applyTheme(currentTheme);
-
-    /* ── PARTICLE CANVAS ── */
-    const canvas = document.getElementById('bg-canvas');
-    const ctx = canvas.getContext('2d');
-    let W, H, particles, animId;
     const N = 55;
     const MAX_DIST = 155;
 
